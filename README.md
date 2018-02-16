@@ -1,65 +1,20 @@
 # EventCards
-A small tool that helps you problematically create cards for upcoming events on public Google calendar
+A small tool that helps you programmatically create info cards for upcoming events on a public Google calendar. This let's you choose how many cards (events) you want to show. You can only show the next upcoming event, or the next 3, 4 ,5...
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To get started, all you need to do is fork the repo and download it. It's all simple HTML, CSS and JS (Jquery).
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Absolutely nothing! A good text editor is recommeneded, but even the defualt one built into your OS would work in a pintch.
 
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+To add this to an existing project, you need to reference the js and css files in your HTML. Add ``<div id="EventCards"></div>`` where you want the cards to show up.
 
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+This is how a card looks like - https://imgur.com/a/UHK0l
 
 ## Contributing
 
@@ -71,16 +26,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Elad Karni** - *Initial work* - [Light1c3](https://github.com/Light1c3)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
