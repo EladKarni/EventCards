@@ -1,6 +1,8 @@
 # EventCards
 A small tool that helps you programmatically create info cards for upcoming events on a public Google calendar. This let's you choose how many cards (events) you want to show. You can only show the next upcoming event, or the next 3, 4 ,5...
 
+I tried to make the styling as generic as possible, but please feel free to make adjustments as needed in the CSS file.
+
 ## Getting Started
 
 To get started, all you need to do is fork the repo and download it. It's all simple HTML, CSS and JS (Jquery).
