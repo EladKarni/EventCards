@@ -13,7 +13,7 @@ $(document).ready(function () {
         var items = data.items;
         for(var i = 0; i < items.length; i++) {
             var startTime = new Date(items[i].start.dateTime);
-            var card = '<div class="card"><div class="container"><h4><b>' + items[i].summary + '</b></h4><br/><p>' + getShowDate(startTime) + '</p><p>' + getShowTime(startTime) + '</p><p>' + '</p></div></card>';
+            var card = '<div class="card"><h4><b>' + items[i].summary + '</b></h4><br/><p>' + getShowDate(startTime) + '</p><p>' + getShowTime(startTime) + '</p><p>' + '</p></card>';
             EventsDiv.innerHTML += card;      
         }
     });
