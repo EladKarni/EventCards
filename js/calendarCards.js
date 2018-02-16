@@ -7,7 +7,7 @@ var EventsDiv = document.getElementById("EventCards");
 
 $(document).ready(function () {
     $.ajax({
-      url: Root + calendarID + "events?maxResults=" + maxResults + "&timeMin=" + currectDate + "&singleEvents=true&orderBy=startTime" + '&key=' + APIKey,
+      url: Root + calendarID + "/events?maxResults=" + maxResults + "&timeMin=" + currectDate + "&singleEvents=true&orderBy=startTime" + '&key=' + APIKey,
       method: 'GET'
     }).then(function(data) {
         var items = data.items;
@@ -21,9 +21,10 @@ $(document).ready(function () {
 
 function  getShowDate(date) {
     var legth = (date.toUTCString().length - 13);
-    return "Date: " + date.toUTCString().substring(0,  legth);
+    return "Date: " + date.toUTCString().substring(0, legth);
 }
 
 function  getShowTime(date) {
-    return "Start Time: " + date.toLocaleTimeString();
+    var legth = (date.toLocaleTimeString().length);
+    return "Start Time: " + date.toLocaleTimeString().substring(0, legth - 6) + date.toLocaleTimeString().substring(legth - 3, legth);
 }
