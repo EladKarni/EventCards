@@ -16,7 +16,7 @@ Absolutely nothing! A good text editor is recommeneded, but even the defualt one
 
 To add this to an existing project, you need to reference the js and css files in your HTML. Add ``<div id="EventCards"></div>`` where you want the cards to show up.
 
-This is how a card looks like - ![Image](https://imgur.com/a/UHK0l.png?raw=true)
+This is how a card looks like - ![eventcard](https://user-images.githubusercontent.com/5354289/36314402-bf7a6516-1302-11e8-9e06-ced41f33d073.PNG)
 
 ## Contributing
 
