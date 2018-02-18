@@ -1,7 +1,7 @@
 var Root = 'https://www.googleapis.com/calendar/v3/calendars/';
-var calendarID = '<YOUR GOOGLE CALENDAR ID HERE>';
+var calendarID = '<YOUR CALENDAR ID HERE>';
 var maxResults = 2;
-var APIKey = '<YOUR GOOGLE API KEY HERE>';
+var APIKey = '<YOUR API KEY HERE>';
 var currectDate = (new Date()).toISOString();
 var EventsDiv = document.getElementById("EventCards");
 
@@ -104,5 +104,5 @@ function mapInitilization(location, index) {
           alert("Geocode was not successful for the following reason: " + status);
         }
       });
-    }
+    }  
   }  
