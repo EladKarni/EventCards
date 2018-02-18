@@ -1,14 +1,9 @@
 var Root = 'https://www.googleapis.com/calendar/v3/calendars/';
-var calendarID = '1kl8atmma4oppshf1ffa2h6do4@group.calendar.google.com';
+var calendarID = '<YOUR GOOGLE CALENDAR ID HERE>';
 var maxResults = 2;
-var APIKey = 'AIzaSyBHIh0EFUSPss_CQrdDYlDmun23OJdsXBA';
+var APIKey = '<YOUR GOOGLE API KEY HERE>';
 var currectDate = (new Date()).toISOString();
 var EventsDiv = document.getElementById("EventCards");
-
-var geocoder;
-var map;
-var address = "San Diego, CA";
-
 
 $(document).ready(function () {
     $.ajax({
@@ -30,10 +25,15 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                             </div>
-                        <div id="map_canvas" ></div>
+                        <div id="map_canvas${i}" class="map_canvas"></div>
                     </li>`;
             EventsDiv.innerHTML += card;
-            mapInitilization(items[i].location);
+        }
+        for(var i = 0; i < data.items.length; i++){
+            if(data.items[i].location != null){
+                mapInitilization(data.items[i].location, [i]);
+                document.getElementById(`map_canvas${i}`).style.visibility='visible';
+            }
         }
     });
 });
@@ -56,7 +56,10 @@ function  getEventTime(time) {
     return `<i class="far fa-clock"></i> ` + time.toLocaleTimeString().substring(0, legth - 6) + time.toLocaleTimeString().substring(legth - 3, legth);
 }
 
-function mapInitilization(location) {
+function mapInitilization(location, index) {
+    var geocoder, map;
+    var address = location;
+
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(40.4406, 79.9959);
     var myOptions = {
@@ -70,8 +73,9 @@ function mapInitilization(location) {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
   
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  
+    
+    map = new google.maps.Map(document.getElementById(`map_canvas${index}`), myOptions);
+
     if (geocoder) {
       geocoder.geocode({
         'address': location
@@ -100,5 +104,5 @@ function mapInitilization(location) {
           alert("Geocode was not successful for the following reason: " + status);
         }
       });
-    }  
+    }
   }  
