@@ -1,7 +1,7 @@
 var Root = 'https://www.googleapis.com/calendar/v3/calendars/';
-var calendarID = '1kl8atmma4oppshf1ffa2h6do4@group.calendar.google.com';
+var calendarID = '<YOUR CALENDAR ID HERE>';
 var maxResults = 2;
-var APIKey = 'AIzaSyBHIh0EFUSPss_CQrdDYlDmun23OJdsXBA';
+var APIKey = '<YOUR API KEY HERE>';
 var currectDate = (new Date()).toISOString();
 var EventsDiv = document.getElementById("EventCards");
 
