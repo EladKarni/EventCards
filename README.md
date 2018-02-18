@@ -18,7 +18,7 @@ To add this to an existing project, you need to reference the js and css files i
 
 This is how a card looks like:
 
-![eventcard](https://user-images.githubusercontent.com/5354289/36333757-a9a2fe94-1346-11e8-98ae-27058f300169.PNG)
+![dxcaxbeiqv](https://user-images.githubusercontent.com/5354289/36349554-cb25023a-1457-11e8-893f-247212bc2d5a.gif)
 
 ## Contributing
 
