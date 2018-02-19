@@ -1,6 +1,6 @@
 var Root = 'https://www.googleapis.com/calendar/v3/calendars/';
 var calendarID = '<YOUR CALENDAR ID HERE>';
-var maxResults = 2;
+var maxResults = 4;
 var APIKey = '<YOUR API KEY HERE>';
 var currectDate = (new Date()).toISOString();
 var EventsDiv = document.getElementById("EventCards");
@@ -12,16 +12,22 @@ $(document).ready(function () {
     }).then(function(data) {
         var items = data.items;
         for(var i = 0; i < items.length; i++) {
-            var startTime = new Date(items[i].start.dateTime);
+
+            console.log(items[i]);
+            var startTime = getDateTime(items[i].start);
+            var endTime = getDateTime(items[i].end);
+
             var card = `
                     <li class="card">
                         <div class="card--text">
                             <div class="text--container">
                                 <div class="text--header">
+                                    <a class="addEvent-btn" href="${items[i].htmlLink}" target="_blank"><i class="fas fa-calendar-plus"></i></a>
                                     <h2 class="text--title">` + items[i].summary + `</h2>
                                         `+ getEventLocation(items[i]) + `
                                         <p>` + getEventDate(startTime) + `</p>
-                                        <p>` + getEventTime(startTime) + `</p>
+                                        <p>` + getEventTime(startTime, items[i].start) + getEventEndTime(endTime, items[i].end) + `</p>
+                                        ` + getEventDisc(items[i].description) + `
                                     </div>
                                 </div>
                             </div>
@@ -46,14 +52,42 @@ function  getEventLocation(evntLocation) {
     }
 }
 
-function  getEventDate(date) {
-    var legth = (date.toUTCString().length - 13);
-    return `<i class="far fa-calendar-alt"></i> ` + date.toUTCString().substring(0, legth);
+function  getEventDisc(disc) {
+    if(disc == null){
+        return "";
+    } else 
+    return disc.substring(4);
 }
 
-function  getEventTime(time) {
-    var legth = (time.toLocaleTimeString().length);
-    return `<i class="far fa-clock"></i> ` + time.toLocaleTimeString().substring(0, legth - 6) + time.toLocaleTimeString().substring(legth - 3, legth);
+function  getEventDate(date) {
+    var length = (date.toUTCString().length - 13);
+    return `<i class="far fa-calendar-alt"></i> ` + date.toUTCString().substring(0, length);
+}
+
+function getDateTime(event) {
+    if(event.date != null) {
+        return date = new Date(event.date);
+    } else {
+        return new Date(event.dateTime);
+    }
+}
+
+function  getEventTime(time, event) {
+    var length = (time.toLocaleTimeString().length);
+    if(event.date != null) {
+        console.log(event)
+        return `<i class="far fa-clock"></i> All day`; 
+    }
+    return `<i class="far fa-clock"></i> ` + time.toLocaleTimeString().substring(0, length - 6) + time.toLocaleTimeString().substring(length - 3, length);
+}
+
+function  getEventEndTime(time, event) {
+    var length = (time.toLocaleTimeString().length);
+    if(event.date != null) {
+        console.log(event)
+        return ``; 
+    }
+    return ` - ` + time.toLocaleTimeString().substring(0, length - 6) + time.toLocaleTimeString().substring(length - 3, length);
 }
 
 function mapInitilization(location, index) {
