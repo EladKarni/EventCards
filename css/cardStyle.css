@@ -7,7 +7,7 @@
     min-height: 375px;
     overflow-y: hidden;
     display: flex;
-    justify-content: center;
+    margin: auto;
   }
   .card {
     overflow: hidden;
