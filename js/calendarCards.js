@@ -1,6 +1,7 @@
 var Root = 'https://www.googleapis.com/calendar/v3/calendars/';
 var calendarID = '<YOUR CALENDAR ID HERE>';
-var maxResults = 4;
+var maxResults = 5;
+var numberOfEvents = 0;
 var APIKey = '<YOUR API KEY HERE>';
 var currectDate = (new Date()).toISOString();
 var EventsDiv = document.getElementById("EventCards");
@@ -11,28 +12,28 @@ $(document).ready(function () {
       method: 'GET'
     }).then(function(data) {
         var items = data.items;
+        numberOfEvents = items.length;
         for(var i = 0; i < items.length; i++) {
 
-            console.log(items[i]);
             var startTime = getDateTime(items[i].start);
             var endTime = getDateTime(items[i].end);
 
             var card = `
-                    <li class="card">
-                        <div class="card--text">
-                            <div class="text--container">
-                                <div class="text--header">
-                                    <a class="addEvent-btn" href="${items[i].htmlLink}" target="_blank"><i class="fas fa-calendar-plus"></i></a>
-                                    <h2 class="text--title">` + items[i].summary + `</h2>
-                                        `+ getEventLocation(items[i]) + `
-                                        <p>` + getEventDate(startTime) + `</p>
-                                        <p>` + getEventTime(startTime, items[i].start) + getEventEndTime(endTime, items[i].end) + `</p>
-                                        ` + getEventDisc(items[i].description) + `
-                                    </div>
+                <li class="card">
+                    <div class="card--text">
+                        <div class="text--container">
+                            <div class="text--header">
+                                <a class="addEvent-btn" href="${items[i].htmlLink}" target="_blank"><i class="fas fa-calendar-plus"></i></a>
+                                <h2 class="text--title">` + items[i].summary + `</h2>
+                                    `+ getEventLocation(items[i]) + `
+                                    <p>` + getEventDate(startTime) + `</p>
+                                    <p>` + getEventTime(startTime, items[i].start) + getEventEndTime(endTime, items[i].end) + `</p>
+                                    ` + getEventDisc(items[i].description) + `
                                 </div>
                             </div>
-                        <div id="map_canvas${i}" class="map_canvas"></div>
-                    </li>`;
+                        </div>
+                    <div id="map_canvas${i}" class="map_canvas"></div>
+                </li>`;
             EventsDiv.innerHTML += card;
         }
         for(var i = 0; i < data.items.length; i++){
@@ -41,7 +42,12 @@ $(document).ready(function () {
                 document.getElementById(`map_canvas${i}`).style.visibility='visible';
             }
         }
+        EventsDiv.style.width = `${450*data.items.length}px`;
     });
+});
+
+$( window ).resize(function() {
+    $( "#log" ).append( "<div>Handler for .resize() called.</div>" );
 });
 
 function  getEventLocation(evntLocation) {
@@ -75,7 +81,6 @@ function getDateTime(event) {
 function  getEventTime(time, event) {
     var length = (time.toLocaleTimeString().length);
     if(event.date != null) {
-        console.log(event)
         return `<i class="far fa-clock"></i> All day`; 
     }
     return `<i class="far fa-clock"></i> ` + time.toLocaleTimeString().substring(0, length - 6) + time.toLocaleTimeString().substring(length - 3, length);
@@ -84,7 +89,6 @@ function  getEventTime(time, event) {
 function  getEventEndTime(time, event) {
     var length = (time.toLocaleTimeString().length);
     if(event.date != null) {
-        console.log(event)
         return ``; 
     }
     return ` - ` + time.toLocaleTimeString().substring(0, length - 6) + time.toLocaleTimeString().substring(length - 3, length);
