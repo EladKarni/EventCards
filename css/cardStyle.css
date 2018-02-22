@@ -1,14 +1,6 @@
 /* ============================================================================================================ */
 /* ---------------------------------------------Calendar Cards------------------------------------------------- */
 /* ============================================================================================================ */
-#eventWrapper {
-  width: 100%;
-  overflow: hidden;
-  overflow-x: auto;
-  overflow-y: hidden;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 #EventCards {
   align-content: center;
@@ -19,19 +11,27 @@
   overflow: hidden;
 }
 
+.eventWrapper {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .card {
-  color: #000;
-  background-color: #926239;
+  background-color: #383838;
+  color: #eee;
   overflow: hidden;
   display: inline;
-  max-width: 400px;
-  max-height: 350px;
-  min-width: 400px;
-  min-height: 350px;
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 300px;
+  min-height: 300px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  background-color: #e3d494;
   border-radius: 10px;
   font-family: "Opens Sans", "Roboto", Helvetica, Arial, sans-serif;
   transition: box-shadow 300ms ease-in;
@@ -40,9 +40,10 @@
 .card:hover {
   box-shadow: 20px 20px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.addEvent{
+.addEvent-btn{
+  color: white;
   float: right;
-}  
+}
 .text--container {
   padding: 20px;
   padding-top: 10px;
@@ -66,7 +67,7 @@
   line-height: 1.5em;
 }
 .map_canvas {
-  top: 80%;
+  top: 100%;
   max-width: 500px;
   height: auto;
   max-height: 100%;
@@ -74,21 +75,28 @@
   background-color: #fff;
   box-shadow: 0px -1px 10px 0px rgba(0, 0, 0, 0.2);
   transition: all 450ms cubic-bezier(0.6, 0.06, 0.34, 0.61);
-}
-.map_canvas.is-clicked {
-  top: 0%;
-}
-.map_canvas {
   height: 100%;
   width: 100%;
-  visibility: hidden;
 }
-.map_canvas:hover {
+
+.map_canvas.map-init {
+  animation: map-enters-animation 650ms cubic-bezier(0.6, 0.06, 0.34, 0.61);
+  top: 80%;
+}
+
+.map_canvas.map-init.is-clicked {
   top: 0%;
 }
 
-.addEvent-btn{
-  color: black;
-  float: right;
-  padding-left: 0.5em;
+.map_canvas.map-init:hover {
+  top: 0%;
+}
+
+@keyframes map-enters-animation {
+  0%    { top: 50%;   }
+  20%   { top: 80%;   }
+  40%   { top: 75%;   }
+  60%   { top: 80%;   }
+  80%   { top: 78%;   }
+  100%  { top: 80%;   }
 }

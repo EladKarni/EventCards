@@ -1,6 +1,6 @@
 var Root = 'https://www.googleapis.com/calendar/v3/calendars/';
 var calendarID = '<YOUR CALENDAR ID HERE>';
-var maxResults = 5;
+var maxResults = 4;
 var numberOfEvents = 0;
 var APIKey = '<YOUR API KEY HERE>';
 var currectDate = (new Date()).toISOString();
@@ -39,7 +39,6 @@ $(document).ready(function () {
         for(var i = 0; i < data.items.length; i++){
             if(data.items[i].location != null){
                 mapInitilization(data.items[i].location, [i]);
-                document.getElementById(`map_canvas${i}`).style.visibility='visible';
             }
         }
         EventsDiv.style.width = `${450*data.items.length}px`;
@@ -101,14 +100,14 @@ function mapInitilization(location, index) {
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(40.4406, 79.9959);
     var myOptions = {
-      zoom: 17,
-      center: latlng,
-      mapTypeControl: true,
-      mapTypeControlOptions: {
+        zoom: 17,
+        center: latlng,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
         style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-      },
-      navigationControl: true,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        },
+        navigationControl: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     };
   
     
@@ -119,27 +118,19 @@ function mapInitilization(location, index) {
         'address': location
       }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-              map.setCenter(results[0].geometry.location);
-            var infowindow = new google.maps.InfoWindow({
-              content: '<b>' + address + '</b>',
-              size: new google.maps.Size(150, 50)
-            });
-  
+             map.setCenter(results[0].geometry.location); 
             var marker = new google.maps.Marker({
-              position: results[0].geometry.location,
-              map: map,
-              title: address
+            position: results[0].geometry.location,
+            map: map,
+            title: address
             });
+            $(`#map_canvas${index}`).addClass("map-init");
             google.maps.event.addListener(marker, 'click', function() {
               infowindow.open(map, marker);
             });
   
-          } else {
-            alert("No results found");
-          }
         } else {
-          alert("Geocode was not successful for the following reason: " + status);
+            document.getElementById(`map_canvas${index}`).style.visibility='hidden';
         }
       });
     }  
